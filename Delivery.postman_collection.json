@@ -1,0 +1,1201 @@
+{
+	"info": {
+		"_postman_id": "317c1492-5a69-4c41-8b95-f46d5ddb5f10",
+		"name": "Delivery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20110993",
+		"_collection_link": "https://interstellar-resonance-537505.postman.co/workspace/Spider-Te8~10814060-9c15-41bd-86a5-db82d6c0fe59/collection/20110993-317c1492-5a69-4c41-8b95-f46d5ddb5f10?action=share&source=collection_link&creator=20110993"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var token = pm.response.json().data.token;\r",
+									"pm.collectionVariables.set(\"token\", token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mobile_number",
+									"value": "1234567705443",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password123",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "ahmed",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "{\"lat\": 40.7128, \"lng\": -74.0060}",
+									"type": "text"
+								},
+								{
+									"key": "image_path",
+									"type": "file",
+									"src": "/C:/Users/DELL/Downloads/photo-1575936123452-b67c3203c357.jpg"
+								},
+								{
+									"key": "email",
+									"value": "ahmed@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "user_type",
+									"value": "delivery",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}auth/register",
+							"host": [
+								"{{base_url}}auth"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "mobile_number",
+											"value": "123456770544",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password123",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "omnia",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "{\"lat\": 40.7128, \"lng\": -74.0060}",
+											"type": "text"
+										},
+										{
+											"key": "image_path",
+											"type": "file",
+											"src": "/C:/Users/DELL/Downloads/photo-1575936123452-b67c3203c357.jpg"
+										},
+										{
+											"key": "email",
+											"value": "omnia@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "user_type",
+											"value": "delivery",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}auth/register",
+									"host": [
+										"{{base_url}}auth"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Mar 2025 18:46:56 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User registered successfully. Verification code sent or auto-verified.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "verify",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"mobile_number\": \"1234567890\",\r\n  \"verification_code\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}auth/verify-code",
+							"host": [
+								"{{base_url}}auth"
+							],
+							"path": [
+								"verify-code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var token = pm.response.json().data.token;\r",
+									"pm.collectionVariables.set(\"token\", token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mobile_number",
+									"value": "1234567705443",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}auth/login",
+							"host": [
+								"{{base_url}}auth"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "mobile_number",
+											"value": "1234567705",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}auth/login",
+									"host": [
+										"{{base_url}}auth"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Mar 2025 18:45:45 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Login successful\",\n    \"data\": {\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NDIyMzcxNDUsImV4cCI6MTc0MjI0MDc0NSwibmJmIjoxNzQyMjM3MTQ1LCJqdGkiOiJLbHV4eFBNa3ZGYW5RWVYyIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.FoZ4j4itXcbrDDoFtd019q1qchoRlXkToBHfNbpeFCw\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}auth/logout",
+							"host": [
+								"{{base_url}}auth"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Nearest Delivery",
+			"item": [
+				{
+					"name": "nearest-delivery",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}nearest-delivery",
+							"host": [
+								"{{base_url}}nearest-delivery"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "nearest-delivery",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}nearest-delivery",
+									"host": [
+										"{{base_url}}nearest-delivery"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Mar 2025 18:47:01 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Nearest delivery representatives retrieved successfully\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"name\": \"omnia\",\n            \"email\": \"omnia@gmail.com\",\n            \"mobile_number\": \"123456770544\",\n            \"location\": \"{\\\"lat\\\": 40.7128, \\\"lng\\\": -74.0060}\",\n            \"image_path\": \"http://127.0.0.1:8000/storage/images/voKWxDrD5DlkPr6OVzjQvFPA72NSy4XFDnGuH2ZD.jpg\",\n            \"is_verified\": 1,\n            \"user_type\": \"delivery\",\n            \"created_at\": \"2025-03-17 18:46:56\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}profile",
+							"host": [
+								"{{base_url}}profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}profile",
+									"host": [
+										"{{base_url}}profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Mar 2025 15:30:24 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Profile fetched successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"omnia\",\n        \"email\": \"omnia@gmail.com\",\n        \"mobile_number\": \"12345677904\",\n        \"location\": \"40.7128,-74.0060\",\n        \"image_path\": \"http://127.0.0.1:8000/storage/images/u2NUhOEQVxbmObSKFCchBMSe3wNjsSMwe4szB5FW.jpg\",\n        \"is_verified\": 1,\n        \"user_type\": \"user\",\n        \"created_at\": \"2025-03-17 15:11:40\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Admin Panel",
+			"item": [
+				{
+					"name": "users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}admin/users",
+							"host": [
+								"{{base_url}}admin"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}admin/users",
+									"host": [
+										"{{base_url}}admin"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Mar 2025 19:05:16 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Users retrieved successfully\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"reda\",\n            \"email\": \"reda@gmail.com\",\n            \"mobile_number\": \"1234567705\",\n            \"location\": \"{\\\"lat\\\": 40.7128, \\\"lng\\\": -74.0060}\",\n            \"image_path\": \"images/gKQm2qINpQ91NFrTC2p93nvr83TyD6NypkcnR7mQ.jpg\",\n            \"verification_code\": null,\n            \"user_type\": \"user\",\n            \"is_verified\": 1,\n            \"email_verified_at\": null,\n            \"created_at\": \"2025-03-17T18:45:40.000000Z\",\n            \"updated_at\": \"2025-03-17T18:45:40.000000Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"omnia\",\n            \"email\": \"omnia@gmail.com\",\n            \"mobile_number\": \"123456770544\",\n            \"location\": \"{\\\"lat\\\": 40.7128, \\\"lng\\\": -74.0060}\",\n            \"image_path\": \"images/voKWxDrD5DlkPr6OVzjQvFPA72NSy4XFDnGuH2ZD.jpg\",\n            \"verification_code\": null,\n            \"user_type\": \"delivery\",\n            \"is_verified\": 1,\n            \"email_verified_at\": null,\n            \"created_at\": \"2025-03-17T18:46:56.000000Z\",\n            \"updated_at\": \"2025-03-17T18:46:56.000000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mobile_number",
+									"value": "1234567705449",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password123",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "omnia",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "{\"lat\": 40.7128, \"lng\": -74.0060}",
+									"type": "text"
+								},
+								{
+									"key": "image_path",
+									"type": "file",
+									"src": "/C:/Users/DELL/Downloads/photo-1575936123452-b67c3203c357.jpg"
+								},
+								{
+									"key": "email",
+									"value": "omniaff@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "user_type",
+									"value": "delivery",
+									"type": "text"
+								},
+								{
+									"key": "fcm_token",
+									"value": "xyz12345abcdef",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}admin/users",
+							"host": [
+								"{{base_url}}admin"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "users",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "mobile_number",
+											"value": "1234567705449",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password123",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "omnia",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "{\"lat\": 40.7128, \"lng\": -74.0060}",
+											"type": "text"
+										},
+										{
+											"key": "image_path",
+											"type": "file",
+											"src": "/C:/Users/DELL/Downloads/photo-1575936123452-b67c3203c357.jpg"
+										},
+										{
+											"key": "email",
+											"value": "omniaff@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "user_type",
+											"value": "delivery",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}admin/users",
+									"host": [
+										"{{base_url}}admin"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Mar 2025 19:09:54 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User created successfully\",\n    \"data\": {\n        \"name\": \"omnia\",\n        \"email\": \"omniaff@gmail.com\",\n        \"mobile_number\": \"1234567705449\",\n        \"user_type\": \"delivery\",\n        \"location\": \"{\\\"lat\\\": 40.7128, \\\"lng\\\": -74.0060}\",\n        \"is_verified\": true,\n        \"image_path\": \"images/liGa2MubFuR0iwd7W7a47qNnQjOEndWAmoE8LAGc.jpg\",\n        \"updated_at\": \"2025-03-17T19:09:54.000000Z\",\n        \"created_at\": \"2025-03-17T19:09:54.000000Z\",\n        \"id\": 3\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}admin/users/1",
+							"host": [
+								"{{base_url}}admin"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}admin/users/1",
+									"host": [
+										"{{base_url}}admin"
+									],
+									"path": [
+										"users",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Mar 2025 19:12:01 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User retrieved successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"reda\",\n        \"email\": \"reda@gmail.com\",\n        \"mobile_number\": \"1234567705\",\n        \"location\": \"{\\\"lat\\\": 40.7128, \\\"lng\\\": -74.0060}\",\n        \"image_path\": \"images/gKQm2qINpQ91NFrTC2p93nvr83TyD6NypkcnR7mQ.jpg\",\n        \"verification_code\": null,\n        \"user_type\": \"user\",\n        \"is_verified\": 1,\n        \"email_verified_at\": null,\n        \"created_at\": \"2025-03-17T18:45:40.000000Z\",\n        \"updated_at\": \"2025-03-17T18:45:40.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "omnia",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "reda@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}admin/users/1",
+							"host": [
+								"{{base_url}}admin"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "user",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "omnia",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "reda@gmail.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}admin/users/1",
+									"host": [
+										"{{base_url}}admin"
+									],
+									"path": [
+										"users",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Mar 2025 19:13:06 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User updated successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"reda\",\n        \"email\": \"reda@gmail.com\",\n        \"mobile_number\": \"1234567705\",\n        \"location\": \"{\\\"lat\\\": 40.7128, \\\"lng\\\": -74.0060}\",\n        \"image_path\": \"images/gKQm2qINpQ91NFrTC2p93nvr83TyD6NypkcnR7mQ.jpg\",\n        \"verification_code\": null,\n        \"user_type\": \"user\",\n        \"is_verified\": 1,\n        \"email_verified_at\": null,\n        \"created_at\": \"2025-03-17T18:45:40.000000Z\",\n        \"updated_at\": \"2025-03-17T18:45:40.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}admin/users/3",
+							"host": [
+								"{{base_url}}admin"
+							],
+							"path": [
+								"users",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}admin/users/3",
+									"host": [
+										"{{base_url}}admin"
+									],
+									"path": [
+										"users",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Mar 2025 19:15:38 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User deleted successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "send-notification",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}admin/send-notification",
+							"host": [
+								"{{base_url}}admin"
+							],
+							"path": [
+								"send-notification"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "send-notification",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}admin/send-notification",
+									"host": [
+										"{{base_url}}admin"
+									],
+									"path": [
+										"send-notification"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.27"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 Mar 2025 19:22:53 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Push notification sent successfully\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"// get lang value from collection variables\r",
+					"var lang = pm.variables.get(\"lang\");\r",
+					"pm.request.headers.add({\r",
+					"    key: \"Accept-Language\",\r",
+					"    value: lang\r",
+					"});\r",
+					"\r",
+					"// Add the accept_header header to the request headers\r",
+					"pm.request.headers.add({\r",
+					"    key: \"Accept\",\r",
+					"    value: \"application/json\"\r",
+					"});\r",
+					"\r",
+					"\r",
+					"// Get the current environment\r",
+					"var environment = pm.variables.get(\"env\");\r",
+					"\r",
+					"// Set the base URL based on the environment\r",
+					"if (environment === \"server\") {\r",
+					"    pm.collectionVariables.set(\"base_url\", pm.collectionVariables.get('server'));\r",
+					"} else {\r",
+					"    // local only\r",
+					"    pm.collectionVariables.set(\"base_url\", pm.collectionVariables.get('local'));\r",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "lang",
+			"value": "en",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "env",
+			"value": "local",
+			"type": "string"
+		},
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000/api/",
+			"type": "string"
+		},
+		{
+			"key": "local",
+			"value": "http://127.0.0.1:8000/api/",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "server",
+			"value": "http://127.0.0.1:8000/api/",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}

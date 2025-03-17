@@ -67,3 +67,22 @@ This project provides an API for a delivery service, including user authenticati
 
 ### Push Notifications
 - **Send Notification to All Users:** `POST /api/admin/send-notification`
+
+## API Endpoints
+| Method | Endpoint | Description |
+|--------|---------|-------------|
+| POST   | `/api/register` | Register a new user |
+| POST   | `/api/login` | Authenticate a user |
+| POST   | `/api/logout` | Log out the user |
+| POST   | `/api/verify` | Verify a user's phone number |
+| GET    | `/api/delivery/nearest` | Get nearest delivery representatives |
+| POST   | `/api/admin/users` | Create a new user (Admin) |
+| GET    | `/api/admin/users` | List all users (Admin) |
+| PUT    | `/api/admin/users/{id}` | Update user details (Admin) |
+| DELETE | `/api/admin/users/{id}` | Delete a user (Admin) |
+| POST   | `/api/admin/notify` | Send push notification to all users |
+
+## Postman Collection
+You can import the Postman collection from the following link:
+[Download Postman Collection](Delivery.postman_collection.json)
+
